@@ -5,8 +5,11 @@
                 Plan upravljanja otpadom - {{ $plan->company_name }}
             </h2>
             <div class="flex space-x-2">
-                <a href="{{ route('plans.edit', $plan) }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                    Izmeni
+                <a href="{{ route('plans.edit', $plan) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Izmeni plan
+                </a>
+                <a href="{{ route('plan.generator') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    AI Generator
                 </a>
                 <a href="{{ route('plans.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Nazad na listu
@@ -88,7 +91,12 @@
             <!-- Company Information -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Informacije o firmi</h3>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-medium text-gray-900">Informacije o firmi</h3>
+                        <a href="{{ route('plans.edit', $plan) }}" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                            Izmeni informacije
+                        </a>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Naziv firme</label>

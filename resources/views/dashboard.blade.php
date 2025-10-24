@@ -13,7 +13,7 @@
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-medium text-gray-900">Dobrodošli, {{ $user->name }}!</h3>
-                            <p class="text-gray-600">Generišite planove upravljanja otpadom za vašu firmu.</p>
+                            <p class="text-gray-600">Generišite planove upravljanja otpadom za vašu firmu pomoću AI Generatora.</p>
                             <div class="mt-2">
                                 @if($user->subscribed())
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                         <div class="flex space-x-2">
-                            <a href="{{ route('plans.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Kreiraj novi plan
+                            <a href="{{ route('plan.generator') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                AI Generator
                             </a>
                             @if(!$user->subscribed())
                                 <a href="{{ route('subscription.index') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
@@ -85,9 +85,9 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-center">
                         <h3 class="text-lg font-medium text-gray-900 mb-2">Nemate kreiranih planova</h3>
-                        <p class="text-gray-600 mb-4">Počnite sa kreiranjem prvog plana upravljanja otpadom.</p>
-                        <a href="{{ route('plans.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Kreiraj prvi plan
+                        <p class="text-gray-600 mb-4">Počnite sa kreiranjem prvog plana upravljanja otpadom pomoću AI Generatora.</p>
+                        <a href="{{ route('plan.generator') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            AI Generator
                         </a>
                     </div>
                 </div>

@@ -3,15 +3,35 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\WasteManagementPlanController;
+use App\Http\Controllers\WastePlanController;
+use App\Http\Controllers\PlanGeneratorController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/api-test', function () {
+    return view('api-test');
+});
+
+// Plan Generator routes (authenticated only)
+Route::middleware('auth')->group(function () {
+    Route::get('/plan-generator', [PlanGeneratorController::class, 'showForm'])->name('plan.generator');
+    Route::post('/plan-generate', [PlanGeneratorController::class, 'generatePlan'])->name('plan.generate');
+    Route::get('/plan/download/{filename}', [PlanGeneratorController::class, 'downloadPlan'])->name('plan.download');
+});
+
 Route::get('/dashboard', function () {
-    $user = auth()->user();
-    $plans = $user->wasteManagementPlans()->latest()->take(5)->get();
+    /** @var User|null $user */
+    $user = Auth::user();
+    if ($user) {
+        $plans = $user->wasteManagementPlans()->latest()->take(5)->get();
+    } else {
+        $plans = collect();
+    }
     return view('dashboard', compact('plans', 'user'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -36,6 +56,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/resume', [SubscriptionController::class, 'resume'])->name('resume');
         Route::get('/billing', [SubscriptionController::class, 'billing'])->name('billing');
     });
+    
+    // API routes for plan generation
+    Route::post('/generate-plan', [WastePlanController::class, 'generate'])->name('api.generate-plan');
 });
 
 // Stripe Webhook

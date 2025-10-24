@@ -20,6 +20,12 @@ class WasteManagementPlan extends Model
         'notes',
         'ai_generated_plan',
         'status',
+        'pib',
+        'broj_zaposlenih',
+        'povrsina_objekta',
+        'vrste_otpada',
+        'nacin_skladistenja',
+        'operateri',
     ];
 
     protected $casts = [

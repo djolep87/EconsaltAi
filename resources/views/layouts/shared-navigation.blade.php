@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
                             {{ __('Planovi') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('plan.generator')" :active="request()->routeIs('plan.*')">
+                            {{ __('AI Generator') }}
+                        </x-nav-link>
                     </div>
                 @endauth
             </div>
@@ -98,6 +101,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
                     {{ __('Planovi') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('plan.generator')" :active="request()->routeIs('plan.*')">
+                    {{ __('AI Generator') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('subscription.index')" :active="request()->routeIs('subscription.*')">
                     {{ __('Pretplata') }}
